@@ -72,3 +72,10 @@ app.get('/api/book/:identifier',async (req,res)=>{
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+//// Define a route to handle updates for a specific book by its ID
+app.put('/api/book/:id', async (req,res)=>{
+  console.log("Update " +req.params.id);
+  let book = await bookModel.findByIdAndUpdate(req.params.id, req.body,{new:true});
+  res.send(book);
+})
